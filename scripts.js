@@ -1,10 +1,18 @@
+const rock = document.getElementById('rock')
+const paper = document.getElementById('paper')
+const scissors = document.getElementById('scissors')
+rock.addEventListener('click', () => playRound("rock"))
+paper.addEventListener('click', () =>playRound("paper"))
+scissors.addEventListener('click', () => playRound("scissors"))
+
 function getComputerChoice(){
     let options = ["rock", "paper", "scissors"];
     let choice = options[Math.floor(Math.random() * options.length)];
     return choice;
 }
 
-function playRound(playerSelection, computerSelection) {
+function playRound(playerSelection) {
+    const computerSelection = getComputerChoice();
     if((playerSelection === "rock" && computerSelection === "scissors") || (playerSelection === "scissors" && computerSelection === "paper") || (playerSelection === "paper" && computerSelection === "rock")){
         alert("You won! " + playerSelection + " beats " + computerSelection)
         return "player";
@@ -18,20 +26,26 @@ function playRound(playerSelection, computerSelection) {
   }
 
   function game(){
-    let i = 0;
     let player = 0;
     let computer = 0;
-    for (i; i < 5; ) {
-        const playerSelection = prompt("Rock, paper or scissors: ");
-        const computerSelection = getComputerChoice();
-        let counts = playRound(playerSelection, computerSelection);
+    let flag = true;
+    const rock = document.querySelector('#rock')
+    const paper = document.querySelector('#paper')
+    const scissors = document.querySelector('#scissors')
+    rock.addEventListener('click', playRound("rock"))
+    paper.addEventListener('click', playRound("paper"))
+    scissors.addEventListener('click', playRound("scissors"))
+    while (flag) {
         if(counts === "computer"){
             computer++;
         }else if (counts === "player"){
-            player++
+            player++;
         }else{
-            i +=0;
+            continue;
         }
+        if(computer === 5 || player === 5){
+            flag = false;
+        } 
     }
     if(player > computer){
         return "You won " + player + " points to " + computer;
@@ -40,5 +54,3 @@ function playRound(playerSelection, computerSelection) {
     }
 
   }
-   
-console.log(game());
