@@ -35,7 +35,7 @@ function playRound(playerSelection) {
     if(computer === 5 || player === 5){
         restartGame();
     } 
-  }
+}
 
 function restartGame(){
     if (computer > player){
@@ -47,4 +47,4 @@ function restartGame(){
     computer = 0;
     scoreComputerP.textContent = "Computer: " + computer;
     scorePlayerP.textContent = "Player: " + player;
-  }
+}
